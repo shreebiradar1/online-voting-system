@@ -1,43 +1,47 @@
 package edu.pbl.dto;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import edu.pbl.entity.Candidate;
+
+@Component
 public class CandidateResponse {
-	private Long CandidateId;
-	private String name;
-	private int voteCount;
-	
 	private int responseCode;
 	private String responseMsg;
-	
-	public Long getCandidateId() {
-		return CandidateId;
+
+	@Autowired
+	private CandidateRequest request;
+
+	public CandidateRequest getRequest() {
+		return request;
 	}
-	public void setCandidateId(Long candidateId) {
-		CandidateId = candidateId;
+
+	public void setRequest(CandidateRequest request) {
+		this.request = request;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public int getVoteCount() {
-		return voteCount;
-	}
-	public void setVoteCount(int voteCount) {
-		this.voteCount = voteCount;
-	}
+
 	public int getResponseCode() {
 		return responseCode;
 	}
+
 	public void setResponseCode(int responseCode) {
 		this.responseCode = responseCode;
 	}
+
 	public String getResponseMsg() {
 		return responseMsg;
 	}
+
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
 	}
-	
-	
-}	
+
+	public void setRequest(Candidate canditable) {
+		request.setCandidateId(canditable.getId());
+		request.setName(canditable.getName());
+		request.setVoteCount(canditable.getVoteCount());
+		
+	}
+
+}

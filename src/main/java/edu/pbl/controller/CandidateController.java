@@ -10,19 +10,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.pbl.dto.CandidateRequest;
+import edu.pbl.dto.CandidateResponse;
 import edu.pbl.entity.Candidate;
 import edu.pbl.services.CandidateService;
 
 @RestController
-@RequestMapping(path="/candidate", produces = { "application/json", "application/xml" }, consumes = { "application/json",
-"application/xml" })
+@RequestMapping("/candidate")
 public class CandidateController {
 
     @Autowired
     private CandidateService candidateService;
 
     @PostMapping("/add")
-    public Candidate addCandidate(@RequestBody Candidate candidate) {
+    public CandidateResponse addCandidate(@RequestBody CandidateRequest candidate) {
         return candidateService.addCandidate(candidate);
     }
 
@@ -31,13 +32,13 @@ public class CandidateController {
         return candidateService.getAllCandidates();
     }
 
-    @GetMapping("/id/{id}")
-    public Candidate getCandidateById(@PathVariable Long id) {
+    @GetMapping(path="/id/{id}")
+    public CandidateResponse getCandidateById(@PathVariable Long id) {
         return candidateService.getCandidateById(id);
     }
     
-    @GetMapping("/name/{name}")
-    public Candidate getCandidateByName(@PathVariable String name) {
+    @GetMapping(path="/name/{name}")
+    public CandidateResponse getCandidateByName(@PathVariable String name) {
     	return candidateService.getCandidateByName(name);
     }
 }

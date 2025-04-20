@@ -1,30 +1,22 @@
 package edu.pbl.dto;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import edu.pbl.entity.Voter;
+@Component
 public class VoterResponse {
-	private Long voterId;
-	private String email;
-	private boolean hasVoted;
-	
 	private int responseCode;
 	private String responseMsg;
+
+	@Autowired
+	public VoterRequest request;
 	
-	public Long getVoterId() {
-		return voterId;
+	public VoterRequest getRequest() {
+		return request;
 	}
-	public void setVoterId(Long voterId) {
-		this.voterId = voterId;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public boolean isHasVoted() {
-		return hasVoted;
-	}
-	public void setHasVoted(boolean hasVoted) {
-		this.hasVoted = hasVoted;
+	public void setRequest(VoterRequest request) {
+		this.request = request;
 	}
 	public int getResponseCode() {
 		return responseCode;
@@ -37,5 +29,12 @@ public class VoterResponse {
 	}
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
+	}
+	public void setRequest(Voter voter) {
+		request.setVoterid(voter.getId());
+		request.setName(voter.getName());
+		request.setEmail(voter.getEmail());
+		request.setHasVoted(voter.isHasVoted());
+		
 	}
 }

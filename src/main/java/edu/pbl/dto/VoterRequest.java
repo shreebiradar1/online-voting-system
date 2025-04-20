@@ -1,5 +1,8 @@
 package edu.pbl.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class VoterRequest {
 	private Long voterid;
 	private String name;

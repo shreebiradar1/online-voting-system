@@ -1,5 +1,8 @@
 package edu.pbl.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CandidateRequest {
 	private Long CandidateId;
 	private String name;
