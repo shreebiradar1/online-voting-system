@@ -31,8 +31,13 @@ public class CandidateController {
         return candidateService.getAllCandidates();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Candidate getCandidateById(@PathVariable Long id) {
         return candidateService.getCandidateById(id);
+    }
+    
+    @GetMapping("/name/{name}")
+    public Candidate getCandidateByName(@PathVariable String name) {
+    	return candidateService.getCandidateByName(name);
     }
 }

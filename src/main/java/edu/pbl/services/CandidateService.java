@@ -25,4 +25,8 @@ public class CandidateService {
     public Candidate getCandidateById(Long id) {
         return candidateRepo.findById(id).orElse(null);
     }
+    public Candidate getCandidateByName(String name) {
+//    	Candidate can = new Candidate();
+    	return candidateRepo.findByName(name).orElse(null);
+    }
 }

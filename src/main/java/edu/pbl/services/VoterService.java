@@ -10,44 +10,47 @@ import edu.pbl.repo.VoterRepo;
 
 @Service
 public class VoterService {
-	
-    @Autowired
-    private VoterRepo voterRepo;
 
-    @Autowired
-    private CandidateRepo candidateRepo;
-    
-    public Voter signUp(Voter voter) {
-        return voterRepo.save(voter);
-    }
-    
-    public Voter login(String email, String password) {
-        Voter voter = voterRepo.findByEmail(email);
+	@Autowired
+	private VoterRepo voterRepo;
 
-        if (voter != null && voter.getPassword().equals(password)) {
-            return voter;
-        }
+	@Autowired
+	private CandidateRepo candidateRepo;
 
-        return null;
-    }
-    public String vote(Long voterId, Long candidateId) {
-        Voter voter = voterRepo.findById(voterId).orElse(null);
-        Candidate candidate = candidateRepo.findById(candidateId).orElse(null);
+	public Voter signUp(Voter voter) {
+		return voterRepo.save(voter);
+	}
 
-        if (voter == null || candidate == null) {
-            return "Invalid voter or candidate ID.";
-        }
+	public Voter login(String email, String password) {
+		Voter voter = voterRepo.findByEmail(email);
 
-        if (voter.isHasVoted()) {
-            return "You have already voted.";
-        }
+		if (voter != null && voter.getPassword().equals(password)) {
+			return voter;
+		}
 
-        voter.setHasVoted(true);
-        candidate.setVoteCount(candidate.getVoteCount() + 1);
+		return null;
+	}
 
-        voterRepo.save(voter);
-        candidateRepo.save(candidate);
+	public String vote(Long voterId, String candidatename) {
+		Voter voter = voterRepo.findById(voterId).orElse(null);
+		Candidate candidate = candidateRepo.findByName(candidatename).orElse(null);
 
-        return "Vote cast successfully!";
-    }
+		if (voter == null) {
+			return "Invalid voter";
+		}
+		if(candidate == null) {
+			return "Invalid candidate";
+		}
+		if (voter.isHasVoted()) {
+			return "You have already voted.";
+		}
+
+		voter.setHasVoted(true);
+		candidate.setVoteCount(candidate.getVoteCount() + 1);
+
+		voterRepo.save(voter);
+		candidateRepo.save(candidate);
+
+		return "Vote cast successfully!";
+	}
 }

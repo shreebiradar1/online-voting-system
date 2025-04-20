@@ -10,7 +10,7 @@ public class Candidate {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long candidateid;
 
 	private String name;
 
@@ -26,11 +26,11 @@ public class Candidate {
 
 	// Getters and Setters
 	public Long getId() {
-		return id;
+		return candidateid;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long candidateid) {
+		this.candidateid = candidateid;
 	}
 
 	public String getName() {
