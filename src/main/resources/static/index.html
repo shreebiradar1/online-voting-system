@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Voting System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Vote for Your Favorite Candidate</h1>
+
+    <form id="voteForm">
+        <label for="voterId">Voter ID:</label>
+        <input type="number" id="voterId" required><br><br>
+
+        <label for="candidateId">Select Candidate:</label>
+        <select id="candidateId">
+           <!--Here it will show from js-->
+        </select><br><br>
+
+        <button type="submit">Vote</button>
+    </form>
+
+    <p id="result"></p>
+
+    <script src="script.js"></script>
+</body>
+</html>
